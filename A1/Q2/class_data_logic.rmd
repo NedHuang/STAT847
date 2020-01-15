@@ -1,0 +1,279 @@
+---
+title: "Experimental Results: Logic and hypothesis testing"
+output:
+  pdf_document:
+    keep_tex: no
+    latex_engine: xelatex
+    number_sections: yes
+  html_document:
+    toc: yes
+  word_document: default
+geometry: margin=1in
+graphics: yes
+header-includes:
+- \usepackage{graphicx}
+- \usepackage{color}
+- \usepackage{hyperref}
+- \newcommand{\ve}[1]{\mathbf{#1}}    
+- \newcommand{\sv}[1]{\boldsymbol{#1}} 
+- \newcommand{\mat}[1]{\mathbf{#1}}    
+- \newcommand{\sm}[1]{\boldsymbol{#1}}   
+- \newcommand{\tr}[1]{{#1}^{\mkern-1.5mu\mathsf{T}}}   
+- \newcommand{\wig}[1]{\tilde{#1}}
+- \newcommand{\bigwig}[1]{\widetilde{#1}}
+- \newcommand{\norm}[1]{||{#1}||}           
+- \newcommand{\given}{~\vline~}
+- \newcommand{\indep}{\bot\hspace{-.6em}\bot}
+- \newcommand{\notindep}{\bot\hspace{-.6em}\bot\hspace{-0.75em}/\hspace{.4em}}
+- \newcommand{\depend}{\Join}
+- \newcommand{\notdepend}{\Join\hspace{-0.9 em}/\hspace{.4em}}
+- \newcommand{\imply}{\Longrightarrow}
+- \newcommand{\notimply}{\Longrightarrow \hspace{-1.5em}/ \hspace{0.8em}}
+- \newcommand{\code}[1]{\texttt{#1}}
+- \newcommand*{\Rnsp}{\textsf{R}}
+- \newcommand*{\R}{\textsf{R}$~$}
+  
+  
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+set.seed(12314159)
+
+imageDirectory <- "./img"
+dataDirectory <- "./data"
+path_concat <- function(path1, path2, sep="/") {
+                       paste(path1, path2, sep = sep)
+                      }
+```
+
+---
+
+**48 marks**
+
+In this question, we will explore the data collected in class.  
+
+You will need to download the data `class_data.csv` from the assignment website and save it somewhere.
+Supposing the data to have been saved in a directory `dataDirectory`, read it into \R as
+
+```{r read class data}
+# Usual helper for paths
+path_concat <- function(path1, path2, sep="/") {
+                       paste(path1, path2, sep = sep)
+}
+
+data <- read.csv(file = path_concat(dataDirectory, "class_data.csv"))
+```
+
+Having loaded the data, you might have a look at its contents using any of the standard functions:
+
+```{r, eval = FALSE}
+# just print it
+data
+# view its contents as a spreadsheet (in RStudio)
+View(data)
+# or, look at its data structure
+str(data)
+```
+
+You will find that it is a `data.frame` with `r ncol(class)` variables 
+
+```{r names of variables}
+names(data)
+```
+
+Each row contains one student's answer to the questions associated with these names.
+
+---
+
+\begin{center}
+Here we will only consider the results of the two hypothesis tests using the cards.
+\end{center}
+
+---
+
+\newpage
+
+1.  Recall the experimental scenario associated with the `green` card:
+    
+    - Patrons in a licensed restaurant may drink alcohol legally only if they are 19 years old or older.
+    - Each patron has a card on showing the beverage they are drinking on one side and their age in years on the other.
+    - We want to test the hypothesis
+    
+        H: No patron is illegally drinking alcohol.
+    
+    - Cards of four of the patrons were selected and placed on a table showing only one side of each card.
+    - The four cards were:
+        
+        \begin{tabular}{cccc} 
+        \includegraphics[keepaspectratio=true, width = 0.1\textwidth]{./img/beer} &
+        \includegraphics[keepaspectratio=true, width = 0.1\textwidth]{./img/coke} &
+        \includegraphics[keepaspectratio=true, width = 0.1\textwidth]{./img/age17} &
+        \includegraphics[keepaspectratio=true, width = 0.1\textwidth]{./img/age19} \\
+        (a) & (b) & (c) & (d) 
+        \end{tabular}
+        
+    
+    - To test the hypothesis, each person had five seconds to choose two of these cards to turn over.
+    
+    - The variables `green_card1` and `green_card2` record the first and second choices made by that person.
+    
+    a. *(4 marks)* What could each card potentially reveal about the hypothesis were it turned over? 
+    
+    b. *(1 mark)* Use your answers above to justify why (a) and (c) are the correct cards to turn over.
+    
+    c. *(1 mark)* Suppose a person simply selected two different cards at random (i.e. each available card has an equal probability of being selected).  
+    
+        Explain why the probability that they would select both correct cards is $\frac{1}{6}$?
+    
+    
+    d. *(2 marks)*  Which card was most often selected first?  Was it correct?
+    
+        Which card was most often selected second?  How many times?  And was it correct?
+        
+        Show your code.
+        
+    
+    e. For each green card answer, construct a logical vector containing `TRUE` when the answer is correct and `FALSE` when it is not.  Assign these vectors to `correct_g1` and `correct_g2` respectively.  Use these logical vectors to answer the following:
+    
+        i. *(1 mark)* Show your code for creating `correct_g1` and `correct_g2`.
+       
+           
+    
+        ii. *(2 marks)* Determine the proportion of people who had a correct first selection.  How does this compare to the probability of getting it correct if the first selection was a random one?
+        
+            Show your code.
+       
+    
+        iii. *(2 marks)* Determine the proportion of people who got *both* selections correct.  How does this compare to the probability of getting both correct if the selections were made at random?
+        
+                Show your code.
+       
+               
+    
+        iv. *(2 marks)* Now consider only those who got the first card right.  Determine what proportion of these *also* got the second card right.  
+        
+            How does this compare to the probability of selecting the second correctly at random,  *given* the first was selected correctly?
+        
+            Show your code.
+       
+            
+    
+        v. *(2 marks)* Construct a new numeric vector `prop_correct_green`, from the logical vectors you have created,  which records the proportion (i.e. 0, 0.5, or 1) of correct cards identified by each person.
+            
+            Using `hist()`, draw a histogram of these proportions.  
+            
+            Add a red dashed vertical line using `abline()` to the plot at the average proportion correct. Use `lwd = 3, lty = 2`.
+            
+            Add a blue dotted vertical line to the plot at the median proportion correct.  Use `lwd = 3, lty = 3`.
+            
+            Show your code and the plot.
+            
+            
+        
+         vi. *(2 marks)* Comment on how well the people did overall.  What is the basis for your conclusions?
+         
+---
+
+\newpage
+
+
+2.  Recall the experimental scenario associated with the `red` card:
+    
+    - Have a special deck with 52 cards.
+    - Each card an upper case letter on one side and a positive non-zero integer on the other.
+    - We want to test the hypothesis
+    
+        H: Cards with a vowel on one side will have an even number on the other.
+    
+    - Have four cards selected and  placed on a table showing only one side of each card.
+    - The four cards were:
+        
+        \begin{tabular}{cccc} 
+        \includegraphics[keepaspectratio=true, width = 0.1\textwidth]{./img/cardA} &
+        \includegraphics[keepaspectratio=true, width = 0.1\textwidth]{./img/cardB} &
+        \includegraphics[keepaspectratio=true, width = 0.1\textwidth]{./img/card2} &
+        \includegraphics[keepaspectratio=true, width = 0.1\textwidth]{./img/card3} \\
+        (a) & (b) & (c) & (d) 
+        \end{tabular}
+        
+    
+    - To test the hypothesis, each person had five seconds to choose two of these cards to turn over.
+    
+    - The variables `red_card1` and `red_card2` record the first and second choices made by that person.
+    
+    a. *(4 marks)* What could each card potentially reveal about the hypothesis were it turned over? 
+    
+    b. *(1 mark)* Use your answers above to justify why (a) and (d) are the correct cards to turn over.
+    
+    c. *(2 marks)*  Which card was most often selected first?  Was it correct?
+    
+        Which card was most often selected second?  How many times?  And was it correct?
+        
+        Show your code.
+        
+    
+    e. For each red card answer, construct a logical vector containing `TRUE` when the answer is correct and `FALSE` when it is not.  Assign these vectors to `correct_r1` and `correct_r2` respectively.  Use these logical vectors to answer the following:
+    
+        i. *(1 mark)* Show your code for creating `correct_r1` and `correct_r2`.
+       
+           
+        ii. *(2 marks)* Determine the proportion of people who had a correct first selection.  How does this compare to the probability of getting it correct if the first selection was a random one?
+        
+            Show your code.
+       
+            
+        iii. *(2 marks)* Determine the proportion of people who got *both* selections correct.  How does this compare to the probability of getting both correct if the selections were made at random?
+        
+                Show your code.
+      
+        iv. *(2 marks)* Now consider only those who got the first card right.  Determine what proportion of these *also* got the second card right.  
+        
+            How does this compare to the probability of selecting the second correctly at random,  *given* the first was selected correctly?
+        
+            Show your code.
+       
+        v. *(2 marks)* Construct a new numeric vector `prop_correct_red`, from the logical vectors you have created,  which records the proportion (i.e. 0, 0.5, or 1) of correct cards identified by each person.
+            
+            Using `hist()`, draw a histogram of these proportions.  
+            
+            Add a red dashed vertical line using `abline()` to the plot at the average proportion correct. Use `lwd = 3, lty = 2`.
+            
+            Add a blue dotted vertical line to the plot at the median proportion correct.  Use `lwd = 3, lty = 3`.
+            
+            Show your code and the plot.
+            
+         vi. *(2 marks)* Comment on how well the people did overall.  What is the basis for your conclusions?
+         
+
+---
+
+\newpage
+
+
+3. This question compares the results of the two separate hypothesis tests studied in the previous two questions. 
+
+    a. *(2 marks)* Explain why the two tests and hypotheses were *logically identical*.
+
+    
+    b. *(2 marks)* In what sense are the tests of hypothesis conducted in the first two questions like a statistical test of significance?
+
+    c. Suppose that in these experiments, the two cards were chosen at random (with equal probability of selection).  Let $P$ be the proportion that any individual might get correct when selecting at random.
+
+        i. *(3 marks)* Determine the value of each of the following probabilities (show your work):
+    
+            - $Pr(P = 0)$
+            - $Pr(P = 0.5)$
+            - $Pr(P = 1)$
+
+        ii. *(1 mark)*  Hence determine $E(P)$.
+    
+        iii. *(1 mark)* How does the observed average proportion correct compare with $E(P)$ for each of the hypotheses tested?  That is, which is closer to random and which is farther away? 
+        
+    d. Based on all analyses in all of the above questions:
+    
+        i. *(2 marks)* Which of the two hypotheses were found to be more easily tested by the persons involved?  Give your reasoning.
+        
+    
+        ii. *(2 marks)* What differences between the two set ups might account for the difference in performance?
+        
