@@ -161,13 +161,35 @@ c. For the binomial definition, as given above:
 
     i. *(2 marks)*  Mathematically derive $E(\bigwig{p})$ and the **standard deviation** $SD(\bigwig{p})$.
   $$
+  \widetilde{p} = \frac{X}{n}
   $$
-    
+  $$
+  E\left(\widetilde{p}\right) = E\left(\frac{1}{n} \cdot X\right) =\frac{1}{n} E\left(X \right) 
+  $$
+  $$
+  E\left(X \right) = n \cdot p 
+  $$
+  $$
+  E\left(\widetilde{p}\right) = \frac{1}{n}E\left( n \cdot p\right) = \frac{1}{n} \cdot n \cdot E\left(p\right) = p
+  $$
+    $$
+    Var(\widetilde{p}) = Var\left(\frac{X}{n}\right) = \frac{1}{n^2}Var(X)\\
+    $$
+    $$
+    Var(X) =  E\left(X^2\right) - E^2\left(X\right) = np(1-p)\\
+    $$
+    $$
+    Var\left( \widetilde{p}^2 \right) = Var\left( \frac{X}{n} \right) = \left(\frac{1}{n}\right)^2 Var\left(X\right) = \frac{1}{n^2}np(1-p) = \frac{p(1-p)}{n}
+    $$
+    $$
+     SD\left(\widetilde{p}\right) =\sqrt{Var\left( \widetilde{p}\right)} = \sqrt{\frac{p(1-p)}{n}}
+    $$
     ii. *(2 marks)*  Write a function that calculates the standard deviation of $\bigwig{p}$ for any pair of values of $n$ and $p$ as follows: 
 
-        ```{r, eval = FALSE}
+        ```{r}
         sd_p_wig <- function (n, p) {
             # Your code here
+            return(sqrt(p*(1-p)/n))
         }
         ```
 
@@ -180,37 +202,132 @@ d. Chebyshev's inequality relates the nearness of a random variable $Y$ to its e
      for any constant $k > 1$.
         
      i. *(2 marks)* Write this inequality when $Y = \bigwig{p}$, the binomial proportion estimator.
-        
+  $$
+    \mu = E\left( \widetilde{p} \right) = \frac{X}{n} = p \qquad
+    Y = \widetilde{p} \qquad
+    \sigma = SD(\widetilde{p}) = \sqrt{\frac{p(1-p)}{n}}\\
+  $$
+  $$
+    Pr\left(|Y - \mu| \ge k\sigma \right) \le \frac{1}{k^2} =
+    Pr\left( |\widetilde{p} - p| \ge k \sqrt{\frac{p(1-p)}{n}} \right) \le \frac{1}{k^2}
+  $$
+      
      ii. *(4 marks)* Suppose that $k = 5$.   As a function of $p$, mathematically express the sample size $n$ needed to ensure by Chebyshev's inequality that for our estimator $\bigwig{p}$ we have
      
          \[ Pr\left(|\bigwig{p} - p| \ge \frac{1}{50} \right) \le \frac{1}{25}.\]
-         
-         Using the function `plot()`, with appropriate title and x and y axis labels, plot the curve of $n$ as a function of $p$ for `p = seq(0,1, 0.01)`. 
-        
-     iii. *(4 marks)* Suppose that $k = 5$, and $n = 2500$.   As a function of $p$, mathematically express the bound $B$ given by Chebyshev's inequality, so that for our estimator $\bigwig{p}$ we have
+  $$
+  k\sqrt{\frac{p(1-p)}{n}} = 1/50
+  $$
+  $$
+  k = 5
+  $$
+  $$
+  \sqrt{\frac{p(1-p)}{n}} = \frac{1}{250}\\
+  n = 250^{2} p\left(1-p\right)
+  $$
+
+  Using the function `plot()`, with appropriate title and x and y axis labels, plot the curve of $n$ as a function of $p$ for `p = seq(0,1, 0.01)`. 
+```{r}
+      p <- seq(0,1,0.01)
+      get_n <- function(p_list){
+          ans = c()
+          for (i in 1:length(p_list)){
+              ans <- c(ans, ((250^2)*p[i]*(1-p[i])))
+          }
+          return(ans)
+      }
+      n_list <- get_n(p)
+      plot(p,n_list,xlab="value of p",ylab="sample size n",col="blue")
+```
+
+iii. *(4 marks)* Suppose that $k = 5$, and $n = 2500$.   As a function of $p$, mathematically express the bound $B$ given by Chebyshev's inequality, so that for our estimator $\bigwig{p}$ we have
      
-             \[ Pr\left(|\bigwig{p} - p| \ge B  \right) \le \frac{1}{25}.\]
-         
-             Using the function `plot()`, with appropriate title and x and y axis labels, plot the curve of $B$ as a function of $p$ for `p = seq(0,1, 0.01)`. 
-         
-    iv *(2 marks)* In simple English, summarize what the largest $B$ says about how well $p$ is likely to be estimated when $n = 2500$ according to Chebyshev's inequality.
-        
+\[ Pr\left(|\bigwig{p} - p| \ge B  \right) \le \frac{1}{25}.\]
+Using the function `plot()`, with appropriate title and x and y axis labels, plot the curve of $B$ as a function of $p$ for `p = seq(0,1, 0.01)`. 
+iv *(2 marks)* In simple English, summarize what the largest $B$ says about how well $p$ is likely to be estimated when $n = 2500$ according to Chebyshev's inequality.
+    $$
+    Pr(|\widetilde{p}-p| \ge B) \le \frac{1}{25} 
+    $$
+    $$
+    Pr(|\widetilde{p}-p| \ge k\sqrt{\frac{p(1-p)}{n}}) \le \frac{1}{25} 
+    $$
+    $$
+    B = k\sqrt{\frac{p(1-p)}{n}} \qquad k = 5 \qquad n = 2500 
+    $$
+    $$
+    B = \frac{\sqrt{p(1-p)}}{10}
+    $$
 d. The functions `plot()`, `lines()`, and `abline()` can be used to plot some data, to add curves, and to add a straight line to a plot.  To learn more, type `help("plot.default")`, `help("lines")`,  and `help("abline")`.  
 
     Use these plotting functions, and appropriate arguments (including meaningful titles, and axis labels), to produce the following plots of the function `sd_p_wig()`:
 
-    i. *(3 marks)* As a function of `p = seq(0, 1, 0.01)` for a fixed `n = 10`.  Add a vertical **dashed** line in **red** at the value of $p$ which maximizes the standard deviation.  
+i. *(3 marks)* As a function of `p = seq(0, 1, 0.01)` for a fixed `n = 10`.  Add a vertical **dashed** line in **red** at the value of $p$ which maximizes the standard deviation.  
     
         Hand in your code and plot.
-    
-    ii. *(4 marks)* As a function of `n` $\in \left\{5, 10, 15, \ldots, 50 \right\}$ for the different values of `p` $\in \left\{0.1, 0.3, 0.5, 0.8 \right\}$.  
+        
+```{r}
+p_list <- seq(0, 1, 0.01)
+n <- 10
+get_sd <- function(n,list_p){
+  ans = c()
+  for (i in 1:length(p_list)){
+      ans <- c(ans, sqrt(p[i]*(1-p[i])/n))
+    }
+  return(ans)
+}
+sd_list <- get_sd(n,p_list)
+max_index = which.max(sd_list)
+
+plot(p_list,sd_list,xlab="value of p",ylab="sample size n",col="blue")
+abline(v=p_list[max_index],lty=2,col="red")
+
+```
+
+
+ii. *(4 marks)* As a function of `n` $\in \left\{5, 10, 15, \ldots, 50 \right\}$ for the different values of `p` $\in \left\{0.1, 0.3, 0.5, 0.8 \right\}$.  
     
         - Use a different colour and line type for each curve (i.e. value of `p`). 
         - Use `lwd = 2` for all curves.
         - Use `legend()` to add a legend to the `"topright" corner of the plot,  identify each curve by its colour and line type. 
         - Hand in your code and plot.
+```{r}
+n_list = seq(5,50,5)
+p_list = c(0.1,0.3,0.5,0.8)
+colors = c("red","green","pink","maroon")
 
-    iii. *(2 marks)* Comment on your findings about the dependency of the standard deviation of the binomial proportion estimator $\bigwig{p}$ as a function of $n$ and $p$.
+get_sd <- function(n_list,p_list){
+  ans_list = c()
+  for(i in 1:length(p_list)){
+    ans <- c(sapply(n_list, function(n) sqrt(p_list[i]*(1-p_list[i])/n)))
+      ans_list <- c(ans_list,ans)
+      print(typeof(ans))
+  }
+  return(ans_list)
+}
+
+
+vals<-get_sd(n_list, p_list)
+
+dim(vals)<-c(10,4)
+
+plot(n_list,vals[,1],lwd = 2,lty=2, type="l",col=colors[1],xlab="n",ylab="value of SD")
+for(i in 2:length(p_list)){
+  print(length(n_list))
+  print(vals[,i])
+  lines(n_list,vals[,i],lwd = 2,lty=2, type ="l",col=colors[i])
+  
+}
+legend("bottomleft", 
+  legend = lapply(p_list,  function(x) paste("p=",x,sep="")), 
+  #legend = p_list,
+  col = colors,
+  lty=2,
+  lwd=2
+)
+
+
+```
+iii. *(2 marks)* Comment on your findings about the dependency of the standard deviation of the binomial proportion estimator $\bigwig{p}$ as a function of $n$ and $p$.
 
     
 e.  The \R function `rbinom()` can be used to generate pseudo-random values `x` from a binomial distribution. In this question, you will examine the samples of the sample **proportions**, $x/n$, 
@@ -223,20 +340,53 @@ drawn from binomials with the same value of $p$ but different values of $n$.
         You might find the `rep()` function useful in constructing `n`.
         
         Show your code.
+```{r}
+n_list = seq(5,50,5)
+vals<- sapply(n_list, function(n) rbinom(100,n,0.5)/n)
+
+```
     
     ii. *(3 marks)* Plot the pairs $(n, \widehat{p})$ as points (use plot arguments `ylim = c(0,1), pch = 19, col = adjustcolor("steelblue", 0.2), cex = 0.5` ). 
     
         Note that there will be 100 proportions for every $n$. 
         
         Add a red dashed horizontal line at $p = 0.5$.
+```{r}
+n_list = seq(5,50,5)
+vals<- sapply(n_list, function(n) rbinom(100,n,0.5)/n)
+vals_for_plot = unlist(vals)
+n_for_plot = rep(seq(5,50,5),each = 100)
+plot(n_for_plot, vals_for_plot, ylim = c(0,1), pch = 19, col =adjustcolor("steelblue", 0.2), cex = 0.5,
+     xlab = "size n",ylab = "proportion",main="proportion p vs sample size n")
+abline(h=0.5,lty=2,col="red")
+
+```
     
-    iii. *(2 marks)* Repeat the production of the above plot, complete with horizontal line, but instead of using `n` as the $x$ variable in the plot, use `jitter(n, 2)`.
+
+
+iii. *(2 marks)* Repeat the production of the above plot, complete with horizontal line, but instead of using `n` as the $x$ variable in the plot, use `jitter(n, 2)`.
     
             Show your code and resulting plot.
             
             Comment on the effect of `jitter()`
+```{r}
+n_list = seq(5,50,5)
+vals<- sapply(n_list, function(n) rbinom(100,n,0.5)/n)
+vals1 = unlist(vals)
+n1 = rep(seq(5,50,5),each = 100)
+n2 = jitter(n_for_plot,2)
 
-    iv.  *(1 mark)* Based on the either of the above plots, what do you conclude about the distribution of binomial proportions as $n$ increases?
+plot(jitter(n1,2), vals1, ylim = c(0,1), pch = 19, col =adjustcolor("steelblue", 0.2), cex = 0.5,
+     xlab = "size n",ylab = "proportion",main="proportion p vs sample size n")
+
+
+```
+The effect of jitter add random variation to the values of n. Then there can be an estimations of the proportions for sample sizes other than [5,10,...,50]
+
+
+
+iv.  *(1 mark)* Based on the either of the above plots, what do you conclude about the distribution of binomial proportions as $n$ increases?
+As n increases, the distribution of binominal propertions moves towards the real probability (which is 0.5 in this case).
     
 
 g. *(6 marks)* With supporting reference to any/all suitable discoveries you have made in the above questions, comment on each of the following:
