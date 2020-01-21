@@ -474,6 +474,6 @@ print(p_value_random)
           
         ix. *(2 marks)*   What do you conclude about the two hypotheses?
         
-          - For student digit, the p-value > 0.05, which means that the nulll hypothesis should be rejected. 
-          - For random digit, the p-value < 0.05, which means that the null hypothesis can be accepted.
-          - student_digit is NOT randomly selected, the random_digit is randomly selected.
+          - For student digit, the p-value > 0.05, which means that the null hypothesis can be accepted.
+          - For random digit, the p-value < 0.05, which means that the nulll hypothesis should be rejected. 
+          - student_digit is randomly selected, the random_digit is NOT randomly selected.
