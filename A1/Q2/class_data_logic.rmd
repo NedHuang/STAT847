@@ -62,12 +62,12 @@ path_concat <- function(path1, path2, sep="/") {
                        paste(path1, path2, sep = sep)
 }
 
-data <- read.csv(file = path_concat(dataDirectory, "class_data.csv"))
+data <- read.csv(file = path_concat('./dataDirectory', "class_data.csv"))
 ```
 
 Having loaded the data, you might have a look at its contents using any of the standard functions:
 
-```{r, eval = FALSE}
+```{r eval = FALSE}
 # just print it
 data
 # view its contents as a spreadsheet (in RStudio)
@@ -119,45 +119,122 @@ Here we will only consider the results of the two hypothesis tests using the car
     - The variables `green_card1` and `green_card2` record the first and second choices made by that person.
     
     a. *(4 marks)* What could each card potentially reveal about the hypothesis were it turned over? 
-    
+        * Beer: If this card is chosen, we can know the age of a patron who have alcoholic drink. If the age is smaller than 19, we know the hypothesis is wrong。 
+        - Coke: If this card is chosen, no judgement can be revealed because all patrons can drink coke.
+        - Age17: If this card is chosen, we can know the type of drink this patron drink. If the drink is beer, we know the hypothesis is wrong.、
+        - Age19: If this card is chosed, no judgement can be revealed because all patrons over 19 can drink both coke and beer.
+        
     b. *(1 mark)* Use your answers above to justify why (a) and (c) are the correct cards to turn over.
-    
+        - If we choose card B, we know the age of a patron who drinks coke. Since everyone can drink coke, knowing their age is not helpful in judging the hypythesis.
+        - If we choose card D, we know what kind of drink a patron over 19 years choose. Since all patrons over 19 can drink coke and beer legally, knowing what the patron is not helpful.
+        
     c. *(1 mark)* Suppose a person simply selected two different cards at random (i.e. each available card has an equal probability of being selected).  
     
         Explain why the probability that they would select both correct cards is $\frac{1}{6}$?
-    
-    
+        - The probability of select cards A and C is: choose 2 from 4(choose A and C from {A,B,C,D})
+        \[
+        {4 \choose 2} =  \frac{4!}{2!(4-2)!} = \frac{24}{4} = 6
+        \]
+        - There are 6 ways of selecting 2 cards. the probability of selecting both cards correct is 1/6.
     d. *(2 marks)*  Which card was most often selected first?  Was it correct?
     
         Which card was most often selected second?  How many times?  And was it correct?
         
         Show your code.
-        
+```{r}
+    # get the green_card from the data, address column by name
+    green_1<- data$green_card1
+    green_2 <-data$green_card2
+
+    most_selected_card <- function(cards){
+      card_table <-table(cards)
+      card_name <-card_table[which.max(card_table)]
+      return(card_name)
+    }
     
+    print("the first selected card is:")
+    first_card <-most_selected_card(green_1)
+    print(first_card)
+    
+    print("the second selected card is:")
+    second_card <-most_selected_card(green_2)
+    print(second_card)
+    
+```
+        
+        
+        - The first most often selected is (a), card beer, which is correct.
+        - The second most often selected is (c), card age17, which is correct.
+          
     e. For each green card answer, construct a logical vector containing `TRUE` when the answer is correct and `FALSE` when it is not.  Assign these vectors to `correct_g1` and `correct_g2` respectively.  Use these logical vectors to answer the following:
     
         i. *(1 mark)* Show your code for creating `correct_g1` and `correct_g2`.
-       
-           
+```{r}
+green_1 <- data$green_card1
+green_2 <- data$green_card2
+
+correct_g1 <- green_1 == "a" | green_1 == "c"
+correct_g2 <- green_2 == "a" | green_2 == "c"
+print(correct_g1)
+print(correct_g2)
+print(length(which(correct_g1==TRUE)))
+print(length(which(correct_g2==TRUE)))
+```
+     
     
         ii. *(2 marks)* Determine the proportion of people who had a correct first selection.  How does this compare to the probability of getting it correct if the first selection was a random one?
         
             Show your code.
-       
-    
+```{r}
+percent_g1 <- length(which(correct_g1==TRUE))/length(correct_g1)
+percent_g2 <- length(which(correct_g2==TRUE))/length(correct_g2)
+print(percent_g1)
+print(percent_g2)
+```
+            
+            
+            The proportion of people who had a correct first selection is 0.8571429.
+            If the first selection was random, the proportion should be 0.25.
+            The proportion of people actually choose the correct first selection is higher that that of first random selection.
+        
         iii. *(2 marks)* Determine the proportion of people who got *both* selections correct.  How does this compare to the probability of getting both correct if the selections were made at random?
         
                 Show your code.
-       
+```{r}
+correct_g_both = correct_g1 & correct_g2
+percent_g_both <- length(which(correct_g_both==TRUE))/length(correct_g_both)
+print(percent_g_both)
+
+```
+            
+            
                
-    
+            - Theis proportion is higher than taht of making selection randomly, which is 1/6
         iv. *(2 marks)* Now consider only those who got the first card right.  Determine what proportion of these *also* got the second card right.  
         
             How does this compare to the probability of selecting the second correctly at random,  *given* the first was selected correctly?
         
             Show your code.
-       
             
+```{r}
+
+
+correct_g_both = correct_g1 & correct_g2
+
+percent_g1 <- length(which(correct_g1==TRUE))/length(correct_g1)
+percent_g_both <- length(which(correct_g_both==TRUE))/length(correct_g_both)
+
+percent_g_both_when_1 =  percent_g_both/percent_g1
+print(percent_g_both_when_1)
+```  
+            
+            
+            
+            
+            - Theis proportion is higher than taht of making selection randomly, which is 1/3.
+            - To make a correct selection when first is right, player has to choose the other correct card from remaining 3 cards. Therefore the proportion is 1/3 if select card randomly.
+    
+    
     
         v. *(2 marks)* Construct a new numeric vector `prop_correct_green`, from the logical vectors you have created,  which records the proportion (i.e. 0, 0.5, or 1) of correct cards identified by each person.
             
@@ -169,7 +246,23 @@ Here we will only consider the results of the two hypothesis tests using the car
             
             Show your code and the plot.
             
-            
+```{r}
+# if correct, the proportion is 0.5, add the proportions for green_card1 and green_card2
+numeric_g1 <- replace(correct_g1, correct_g1==TRUE, 0.5)
+numeric_g1 <- replace(numeric_g1, numeric_g1==FALSE, 0)
+numeric_g2 <- replace(correct_g2, correct_g2==TRUE, 0.5)
+numeric_g2 <- replace(numeric_g2, numeric_g2==FALSE, 0)
+
+numeric_g_both <- numeric_g1+numeric_g2
+print(numeric_g_both)
+
+hist(numeric_g_both)
+abline(v = mean(numeric_g_both), col = "red", lwd = 3, lty = 2)
+abline(v = median(numeric_g_both), col = "blue", lwd = 3, lty = 3)
+
+```
+        
+        
         
          vi. *(2 marks)* Comment on how well the people did overall.  What is the basis for your conclusions?
          
@@ -203,35 +296,113 @@ Here we will only consider the results of the two hypothesis tests using the car
     - The variables `red_card1` and `red_card2` record the first and second choices made by that person.
     
     a. *(4 marks)* What could each card potentially reveal about the hypothesis were it turned over? 
-    
+        - Card A: Turing over the card 3 can potentially revel the hypothesis because if the number on the other side is odd, then the hypothesis is wrong.
+        - Card B: Tuning over the card B cannot revel anything about hypothesis becasue consonant can have both odd and even number on the other side.
+        - Card 2: Tuning over the card 2 cannot revel anything about hypothesis becasue an even number can have both consonant and voewl on the other side.
+        - Card 3: Turing over the card 3 can potentially revel the hypothesis because if the letter on the other side is vowel, then the hypothesis is wrong.
     b. *(1 mark)* Use your answers above to justify why (a) and (d) are the correct cards to turn over.
-    
+        - If we choose B: Since B is not a vowel, a consonant can have both odd and even number on the other side. Card B is not the right choice as we cannot revel anything abou the hypothesis.
+        - If we choose 2: Since 2 is even number, an even number can have both consonant and vowel on the other side. Card 2 is not the right choice as we cannot revel anything abou the hypothesis.
+        - If we choose A: Since A is a vowel, a vowel can only have even number on the other side. If the number is odd, we know the hypothesis is wrong.
+        - If we choose 3: Since 3 is an odd number, a odd number can only have consonant on the other side. If the letter is a vowel, then we know the hypothesis is wrong.
+        * In conclusion, (a) and (d) are the correct cards to turn over.    
     c. *(2 marks)*  Which card was most often selected first?  Was it correct?
     
         Which card was most often selected second?  How many times?  And was it correct?
         
         Show your code.
-        
+```{r}
+    # get the green_card from the data, address column by name
+    red_1<- data$red_card1
+    red_2 <-data$red_card2
+
+    most_selected_card <- function(cards){
+      card_table <-table(cards)
+      card_name <-card_table[which.max(card_table)]
+      return(card_name)
+    }
     
+    print("the first selected card is:")
+    first_card <-most_selected_card(red_1)
+    print(first_card)
+    
+    print("the second selected card is:")
+    second_card <-most_selected_card(red_2)
+    print(second_card)
+```
+        
+        
+        
+        - The first most often selected is (a), the card A, which is correct. It was chosen 37 times.
+        - The second most often selected is (c), the card 2, which is incorrect. It was chosen 25 times.
+        
     e. For each red card answer, construct a logical vector containing `TRUE` when the answer is correct and `FALSE` when it is not.  Assign these vectors to `correct_r1` and `correct_r2` respectively.  Use these logical vectors to answer the following:
     
         i. *(1 mark)* Show your code for creating `correct_r1` and `correct_r2`.
-       
+```{r}
+correct_r1 <- red_1 == "a" | red_1 == "d"
+correct_r2 <- red_2 == "a" | red_2 == "d"
+print(correct_r1)
+print(correct_r2)
+
+
+```
+           
+           
            
         ii. *(2 marks)* Determine the proportion of people who had a correct first selection.  How does this compare to the probability of getting it correct if the first selection was a random one?
         
             Show your code.
+```{r}
+
+percent_r1 <- length(which(correct_r1==TRUE))/length(correct_r1)
+percent_r2 <- length(which(correct_r2==TRUE))/length(correct_r2)
+print(percent_r1)
+print(percent_r2)
+
+```
        
+       
+            * The proportion of people who had a correct first selection is 0.8809524. It is higher than 0.25 which is the probability of getting it correct if the first selection was a random one.
+            * The proportion of people who had a correct second selection is 0.3571429
+            
             
         iii. *(2 marks)* Determine the proportion of people who got *both* selections correct.  How does this compare to the probability of getting both correct if the selections were made at random?
         
                 Show your code.
+```{r}
+correct_r_both = correct_r1 & correct_r2
+percent_r_both <- length(which(correct_r_both==TRUE))/length(correct_r_both)
+print(percent_r_both)
+
+```
       
+        
+        
+        - The proportion of people who got both selections correct is 0.2619048.
+        - It is higher than 1/6 which is the proportion of people who got both selections correct randomly.
+        
+        
         iv. *(2 marks)* Now consider only those who got the first card right.  Determine what proportion of these *also* got the second card right.  
         
             How does this compare to the probability of selecting the second correctly at random,  *given* the first was selected correctly?
         
             Show your code.
+            
+```{r}
+correct_r_both = correct_r1 & correct_r2
+
+percent_r1 <- length(which(correct_r1==TRUE))/length(correct_r1)
+percent_r_both <- length(which(correct_r_both==TRUE))/length(correct_r_both)
+
+percent_r_both_when_1 =  percent_r_both/percent_r1
+print(percent_r_both_when_1)
+```
+
+
+            - The proportion of these *also* got the second card right when they got first card correct is 0.2972973.
+            - It is less than 1/3, which is probability of selecting the second correctly at random.
+
        
         v. *(2 marks)* Construct a new numeric vector `prop_correct_red`, from the logical vectors you have created,  which records the proportion (i.e. 0, 0.5, or 1) of correct cards identified by each person.
             
@@ -242,6 +413,22 @@ Here we will only consider the results of the two hypothesis tests using the car
             Add a blue dotted vertical line to the plot at the median proportion correct.  Use `lwd = 3, lty = 3`.
             
             Show your code and the plot.
+            
+```{r}
+# if correct, the proportion is 0.5, add the proportions for green_card1 and green_card2
+numeric_r1 <- replace(correct_r1, correct_r1==TRUE, 0.5)
+numeric_r1 <- replace(numeric_r1, numeric_r1==FALSE, 0)
+numeric_r2 <- replace(correct_r2, correct_r2==TRUE, 0.5)
+numeric_r2 <- replace(numeric_r2, numeric_r2==FALSE, 0)
+
+numeric_r_both <- numeric_r1+numeric_r2
+print(numeric_r_both)
+
+hist(numeric_r_both)
+abline(v = mean(numeric_r_both), col = "red", lwd = 3, lty = 2)
+abline(v = median(numeric_r_both), col = "blue", lwd = 3, lty = 3)
+
+```
             
          vi. *(2 marks)* Comment on how well the people did overall.  What is the basis for your conclusions?
          
@@ -254,7 +441,11 @@ Here we will only consider the results of the two hypothesis tests using the car
 3. This question compares the results of the two separate hypothesis tests studied in the previous two questions. 
 
     a. *(2 marks)* Explain why the two tests and hypotheses were *logically identical*.
-
+        - In first test, if we take the patron can drink alcohol legally as event P, the patron can is over 19 as event Q
+        - We have the logic that P is sufficient condition of Q. And Q is necessary condition of P
+        - In second test, if we take the letter is vowel as event P, the number is even as event Q.
+        - we have the logic that P is sufficient condition of Q. And Q is necessary condition of P
+        
     
     b. *(2 marks)* In what sense are the tests of hypothesis conducted in the first two questions like a statistical test of significance?
 
@@ -263,17 +454,48 @@ Here we will only consider the results of the two hypothesis tests using the car
         i. *(3 marks)* Determine the value of each of the following probabilities (show your work):
     
             - $Pr(P = 0)$
+              Selecting the only two correct cards from four cards....
+              \[
+                \binom{4}{2} = 6
+              \]
+              \[
+              \\
+                Pr(P = 0) = \frac{1}{6}
+              \]
+              
+              
             - $Pr(P = 0.5)$
+              Selecting a correct card then a wrong card  OR selecting a wrong card then a correct card
+              \[
+              Pr(P = 0.5) = \frac{2}{4}\cdot\frac{2}{3}+\frac{2}{4}\cdot\frac{2}{3} = \frac{1}{3}
+              \]
             - $Pr(P = 1)$
+              Selecting the only two wrong cards from four cards....
+              \[
+                \binom{4}{2} = 6
+              \]
+              \[
+              \\
+                Pr(P = 1) = \frac{1}{6}
+              \]
+
 
         ii. *(1 mark)*  Hence determine $E(P)$.
+            \[
+            E(P) = \sum_{x=0,0.5,1}^{}P(x)\cdot Pr(P=x) = 0\cdot\frac{1}{6}+0.5\cdot\frac{2}{3}+1\cdot\frac{1}{6} = \frac{1}{2}
+            \]
     
         iii. *(1 mark)* How does the observed average proportion correct compare with $E(P)$ for each of the hypotheses tested?  That is, which is closer to random and which is farther away? 
+        The observed average for red card is closer to 0.5, which means that is more closer to random.
+        The observed average for greem card is farther away from the random(away from 0.5).
         
     d. Based on all analyses in all of the above questions:
     
         i. *(2 marks)* Which of the two hypotheses were found to be more easily tested by the persons involved?  Give your reasoning.
-        
+        the hypothesis about green card is more easily tested by person because the proportin of selecting both card correct is higher than that for the hypothesis about red card.
     
         ii. *(2 marks)* What differences between the two set ups might account for the difference in performance?
+        The first set up are easier and the second are more difficult for people to make decisions. This is because almost everyone have been checked ID in bars to get a alcohol drink. Therefore we have idea about what should be done to check the first hypothesis.
+        
+        
         

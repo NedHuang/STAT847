@@ -67,7 +67,7 @@ data <- read.csv(file = path_concat(dataDirectory, "class_data.csv"))
 
 Having loaded the data, you might have a look at its contents using any of the standard functions:
 
-```{r, eval = FALSE}
+```{r,eval=FALSE}
 # just print it
 data
 # view its contents as a spreadsheet (in RStudio)
@@ -106,29 +106,51 @@ These two digits provide the values for the variables `random_digit` and `studen
 
 1.  Suppose a digit, $d$, is generated as a realization from a random variable $D$ which is uniformly distributed on the digits $\{0, 1, 2, 3, \ldots, 8, 9\}$.  That is, for any value $d \in \{0, 1, 2, 3, \ldots, 8, 9\}$ we have 
 
-    \[Pr(D = d) = \frac{1}{10}. \]
+\[Pr(D = d) = \frac{1}{10}. \]
 
     a. *(1 mark)* Determine the expectation $E(D)$.
     
-    b. *(2 marks)* Determine the expectation $E(D^2)$ and hence the standard deviation $SD(D)$.
+\[
+    E(D) = \sum_{D=0}^{9} D\cdot P(D) = \sum_{D=0}^{9} \frac{D}{10} = 4.5
+\]
     
-    c. *(1 mark)* Determine the median of $D$. 
+    b. *(2 marks)* Determine the expectation $E(D^2)$ and hence the standard deviation $SD(D)$.
+\[
+  E(D) = \sum_{D=0}^{9} D^2\cdot P(D) = \sum_{D=0}^{9} \frac{D^2}{10} = 28.5
+\]
+
+\[
+  Var(D) = E(D^2) - E(D)^2 = 28.5 - 4.5^2 = 8.25
+\]
+
+\[
+  SD(D) = \sqrt(Var(D)) = \sqrt{8.25} = 2.872281
+\]
+
+c. *(1 mark)* Determine the median of $D$. 
+
+\[median(D) = 4.5\]
+    
     
     d. Suppose we consider the random variable $C$ which for some fixed value $d \in \{0, 1, 2, 3, \ldots, 8, 9\}$ takes values
     
-        \[C = \left\{ 
-                    \begin{array}{lcl}
-                    1 & $~~~~$ & \mbox{when } D = d \\
-                      &        &                    \\
-                    0 & $~~~~$ & \mbox{when } D \ne d
-                    \end{array}
-              \right. \]
+\[C = \left\{ 
+            \begin{array}{lcl}
+            1 & $~~~~$ & \mbox{when } D = d \\
+              &        &                    \\
+            0 & $~~~~$ & \mbox{when } D \ne d
+            \end{array}
+      \right. \]
               
         which implies 
         
-        \[Pr(C = 1) = Pr(D = d) = \frac{1}{10}\]
-        and  
-        \[Pr(C = 0) = Pr(D \ne d) = 1 -  Pr(D = d) = \frac{9}{10}. \]
+\[
+Pr(C = 1) = Pr(D = d) = \frac{1}{10}
+\]
+and  
+\[
+Pr(C = 0) = Pr(D \ne d) = 1 -  Pr(D = d) = \frac{9}{10}
+\]
     
     
         Suppose we have $C_1, C_2, \ldots, C_n$ independent and identically distributed random variables with the same distribution as $C$.
@@ -136,25 +158,100 @@ These two digits provide the values for the variables `random_digit` and `studen
         Let $X = \sum_{i=1}^n C_i$.
         
         i. *(1 mark)* What is the name of the probability distribution of $X$?
+            - binomial distribution
         
         ii. *(1 mark)* Hence, write down an expression $Pr(X = x)$ for $x \in {0, 1, \ldots, n}$.
         
+        
+\[
+  Pr(X=x) = \binom{n}{k}\left(\frac{1}{10}\right)^{k}\left(1-\frac{1}{10}\right)^{n-k}
+\]  
+        
+        
+        
+        
         iii. *(1 mark)* Hence, write down an expression $E(X)$.
+\[
+    E\left(X\right) = np = \frac{n}{10}
+\]
+        
+        
         
         
     e. Using the `data` from class, for **each** of the variables `random_digit` and `student_digit`, calculate (show your code in each case) its
     
         i. *(2 marks)* sample average,
         
+
+```{r}
+s_digit <- data$student_digit
+r_digit <- data$random_digit
+s_digit_mean <- mean(s_digit)
+r_digit_mean <- mean(r_digit)
+print(s_digit_mean)
+print(r_digit_mean)
+                    
+```
+            - The mean of student_digit is 4.595238
+            - The mean of random_digit is 5.5
+      
+      
+  
         ii. *(2 marks)* sample standard deviation, 
+```{r}
+s_digit_sd <- sd(s_digit)
+r_digit_sd <- sd(r_digit)
+print(s_digit_sd)
+print(r_digit_sd)
+```
+      
+      
+            - The standard deviation of student_digit is 3.052864
+            - The standard deviation of random_digit is 2.778401
+        
         
         iii. *(2 marks)* sample median,
         
+```{r}
+s_digit_median <- median(s_digit)
+r_digit_median <- median(r_digit)
+print(s_digit_median)
+print(r_digit_median)
+```
+  
+          
+            - The median of student_digit is 5
+            - The median of random_digit is 7
+        
+        
+        
         iv. *(3 marks)* and compare these to the corresponding theoretical values from the distribution of $D$.
+            
+              Varname                     Theoretical        student_digit        random_digit
+              mean                        4.5                4.595238             5.5
+              median                      4.5                5                    7
+              standard deviation          2.872281           3.052864             2.778401
+              
+              
+              - student_digit sample has larger mean, median, and standard deviation than theoretical value
+              - random_digit sample has larger mean, and median than theoretical results. 
+              - But its standard deviation is smaller than theoretical value
+
+
+            
         v. *(1 mark)* Which of `random_digit` and `student_digit` have sample values closer to the theoretical values.
+        
+            - student_digit have sample values closer to the theoretical values because the median and mean of student_digit
+              is closes to theroretical values. student_digit and random_digit have standards deviation are all close to the
+              theoretical sd.
+
+
+        -- Student_digit is more close to theoretical(uniform distribution)
 
     f. *(3 marks)* Calculate $Pr(X = x)$ when $n =$ `r nrow(data)` and $x = 0$, $5$, and $10$.
-        
+\[Pr(X=0) = \binom{42}{0}\left(\frac{1}{10}\right)^{0}\left(\frac{9}{10}\right)^{42-0} = 0.01197251518\]
+\[Pr(X=5) = \binom{42}{5}\left(\frac{1}{10}\right)^{5}\left(\frac{9}{10}\right)^{42-5} = 0.17247769726\]
+\[Pr(X=10) = \binom{42}{10}\left(\frac{1}{10}\right)^{10}\left(\frac{9}{10}\right)^{42-10} = 0.00505246993\]
 
 ---
 
@@ -169,15 +266,33 @@ These two digits provide the values for the variables `random_digit` and `studen
     a. *(4 marks)* The function `stem()` is a simple way to get a quick picture (a "stem and leaf plot") of the distribution of a set of digits.  Use `stem()` to construct a picture of each of the following:
     
         i. the values of `student_digit`,
+```{r}
+stem(s_digit)
+```
+
+
+
         ii. the values of `random_digit`,
+```{r}
+stem(r_digit)
+```
         iii. and, for comparison, a sample of the same size from a uniform distribution on the digits using
             the function `sample()`.
+
+```{r}
+uniform_sample <- sample(1:10, replace = TRUE,40)
+stem(uniform_sample)
+```
+        
+        
             
         Which of `student_digit` or `random_digit` looks more like it might have come from a Uniform on the digits?  Why?
+        
+            - student_digit looks more like it might have come from a Uniform on the digits becaus the lengths of 'stems' are similiar. 
             
     b. A more formal way to assess whether a sample of values appear to come from a hypothesized distribution is to calculate the *Pearson's chi-squared test* of "goodness of fit" statistic.  This is generally expressed as
     
-        \[ \Chi^2 = \sum_{i=1}^m \frac{(o_i - e_i)^2}{e_i}  \]
+\[ \chi^2 = \sum_{i=1}^m \frac{(o_i - e_i)^2}{e_i}  \]
         
         where $o_i$ is the observed number of values in the $i$th "cell", $e_i$ is the expected number to fall into that cell according to the hypothesized model, and $m$ is the total number of (non-overlapping) cells.
         
@@ -189,10 +304,26 @@ These two digits provide the values for the variables `random_digit` and `studen
         
         i. *(4 marks)* Write a function `count_digits()` which takes a vector of digits `d` and returns a numeric vector whose $i$th element contains the number of values in `d` which were equal to $i-1$.  That is, write
         
-            ```{r count_digits template, eval = FALSE}
-            count_digits <- function (d) {
-                   # Your code here
-                   }
+```{r count_digits template, }
+count_digits <- function (d) {
+  len<- length(d)
+  digits <- seq(0,len-1,1)
+  return(sapply(digits,function(x) sum(d==x)))
+}
+
+
+
+my_digits <- c(0, 1, 3, 4, 7, 1, 4, 9, 7, 4)
+print("my_function returns:")
+count_digits(my_digits)
+# would return a vector equal to
+print("it should be: ")
+c(1, 2, 0, 1, 3, 0, 0, 2, 0, 1)
+
+```
+
+
+
             # for example if
             my_digits <- c(0, 1, 3, 4, 7, 1, 4, 9, 7, 4)
             # then 

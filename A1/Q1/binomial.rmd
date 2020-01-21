@@ -310,18 +310,18 @@ vals<-get_sd(n_list, p_list)
 
 dim(vals)<-c(10,4)
 
-plot(n_list,vals[,1],lwd = 2,lty=2, type="l",col=colors[1],xlab="n",ylab="value of SD")
+plot(n_list,vals[,1],lwd = 2,lty=1, type="l",col=colors[1],xlab="n",ylab="value of SD")
 for(i in 2:length(p_list)){
   print(length(n_list))
   print(vals[,i])
-  lines(n_list,vals[,i],lwd = 2,lty=2, type ="l",col=colors[i])
+  lines(n_list,vals[,i],lwd = 2,lty=i, type ="l",col=colors[i])
   
 }
 legend("bottomleft", 
   legend = lapply(p_list,  function(x) paste("p=",x,sep="")), 
   #legend = p_list,
   col = colors,
-  lty=2,
+  lty=c(1,2,3,4),
   lwd=2
 )
 
