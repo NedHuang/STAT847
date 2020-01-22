@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.5.8)  19 JAN 2020 22:56
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.5.8)  21 JAN 2020 19:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1259,13 +1259,13 @@ Overfull \hbox (81.49498pt too wide) in paragraph at lines 867--867
 ll.  What is the basis for your conclusions?[] 
  []
 
-[9]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 973.
-[10]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 973.
+[9] [10]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 984.
+[11]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 984.
 (./class_data_logic.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 973.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 973.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 984.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 984.
 Package rerunfilecheck Info: File `class_data_logic.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E.
  ) 
@@ -1276,6 +1276,6 @@ Here is how much of TeX's memory you used:
  31040 multiletter control sequences out of 15000+600000
  538692 words of font info for 72 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 59i,7n,115p,824b,451s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 59i,7n,115p,824b,588s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on class_data_logic.pdf (10 pages).
+Output written on class_data_logic.pdf (11 pages).

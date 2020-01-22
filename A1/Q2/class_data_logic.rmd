@@ -486,16 +486,17 @@ abline(v = median(numeric_r_both), col = "blue", lwd = 3, lty = 3)
             \]
     
         iii. *(1 mark)* How does the observed average proportion correct compare with $E(P)$ for each of the hypotheses tested?  That is, which is closer to random and which is farther away? 
-        The observed average for red card is closer to 0.5, which means that is more closer to random.
-        The observed average for greem card is farther away from the random(away from 0.5).
+            * The observed average for red card is closer to 0.5, which means that is more closer to random.
+            * The observed average for greem card is farther away from the random(away from 0.5).
         
     d. Based on all analyses in all of the above questions:
     
         i. *(2 marks)* Which of the two hypotheses were found to be more easily tested by the persons involved?  Give your reasoning.
-        the hypothesis about green card is more easily tested by person because the proportin of selecting both card correct is higher than that for the hypothesis about red card.
+            * the hypothesis about green card is more easily tested by person because the proportin of selecting both card correct is higher than that for the hypothesis about red card.
     
         ii. *(2 marks)* What differences between the two set ups might account for the difference in performance?
-        The first set up are easier and the second are more difficult for people to make decisions. This is because almost everyone have been checked ID in bars to get a alcohol drink. Therefore we have idea about what should be done to check the first hypothesis.
+        
+            * The first set up are easier and the second are more difficult for people to make decisions. This is because almost everyone have been checked ID in bars to get a alcohol drink. Therefore we have idea about what should be done to check the first hypothesis.
         
         
         

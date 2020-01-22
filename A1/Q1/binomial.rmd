@@ -135,8 +135,8 @@ b.  Extreme proportions like $\widehat{p} \approx 0$ or $\widehat{p} \approx 1$ 
   \frac{Pr(\widetilde {p}_x= 1)}{Pr(\widetilde{p}_y = 1)} =\frac{\binom{n}{n}p^{n}(1-p)^{0}}{\binom{m}{m}p^{m}(1-p)^{0}}=\frac{\binom{n}{n}}{\binom{m}{m}}p^{n-m} =p^{n-m}
   $$
     ii. *(2 marks)*  Describe what happens to each of these ratios for $n < m$ and $m$ increases.
-    As $m$ increases, the first ratio will increase. The base 1-p is between 0 and 1 and the exponent decreases from 0. The power will increase if m increases.
-    As $m$ increases, the second ratio will increase. The base p is between 0 and 1 and the exponent decreases from 0. The power will increase if m increases.
+      * As $m$ increases, the first ratio will increase. The base 1-p is between 0 and 1 and the exponent decreases from 0. The power will increase if m increases.
+      * As $m$ increases, the second ratio will increase. The base p is between 0 and 1 and the exponent decreases from 0. The power will increase if m increases.
     
     iii. *(3 marks)* Suppose $p = 1/2$, $n = 5$ and $m \in \left\{5, 6, 7, \ldots, 14, 15 \right\}$.  Using the `plot()` function (with appropriate title and axis labels), plot the curve of the pair $(n, m)$ for all values.
     
@@ -381,18 +381,34 @@ plot(jitter(n1,2), vals1, ylim = c(0,1), pch = 19, col =adjustcolor("steelblue",
 
 
 ```
-The effect of jitter add random variation to the values of n. Then there can be an estimations of the proportions for sample sizes other than [5,10,...,50]
 
+
+
+
+* The effect of jitter add random variation to the values of n. 
+* Then there can be an estimations of the proportions for sample sizes other than [5,10,...,50]
 
 
 iv.  *(1 mark)* Based on the either of the above plots, what do you conclude about the distribution of binomial proportions as $n$ increases?
-As n increases, the distribution of binominal propertions moves towards the real probability (which is 0.5 in this case).
+
+        
+      * As n increases, the distribution of binominal propertions moves towards the real probability (which is 0.5 in this case).
     
 
 g. *(6 marks)* With supporting reference to any/all suitable discoveries you have made in the above questions, comment on each of the following:
 
     i. Which values for the true binomial probability $p$ are hardest/easiest to estimate from a sample.  Why?
     
+    * P = 0.5 is hardest to estimate because from the plot, P = 0.5 gives the largest standard deviation when keeping sample size n constant.
+    * P = 0.1 is hardest to estimate because from the plot, P = 0.1 gives the smallest standard deviation when keeping sample size n constant.
+    
     ii. Law of large numbers?  What can you say about the effect of increasing sample size $n$ on the quality and/or interpretation of your estimate $\widehat{p}$ of $p$?
     
-    iii. Law of small numbers? What can you say about the effect of decreasing sample size $n$ on the quality and/or interpretation of your estimate $\widehat{p}$ of $p$?
+        * The average of the results obtained from a large number of trials should be close to the expected value.(Wikipedia, https://en.wikipedia.org/wiki/Law_of_large_numbers)
+        * Therefore, increasing the sample size n will make a more precise prediction of $\widehat{p}$ (closer to p)
+    
+    iii. Law of small numbers? What can you say about the effect of decreasing sample size $n$ on the quality and/or interpretation of your estimate $\widehat{p}$ of $p$?   
+    
+        * Small number of trials can give impercise result(far away from the expectation). 
+        * Becaus there are chances that not all possibility are covered with a shamm sample size, 
+        * likelihood of a Type II error skewing the results can be increased.
