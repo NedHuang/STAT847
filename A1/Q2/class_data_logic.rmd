@@ -485,8 +485,10 @@ abline(v = median(numeric_r_both), col = "blue", lwd = 3, lty = 3)
             E(P) = \sum_{x=0,0.5,1}^{}P(x)\cdot Pr(P=x) = 0\cdot\frac{1}{6}+0.5\cdot\frac{2}{3}+1\cdot\frac{1}{6} = \frac{1}{2}
             \]
     
-        iii. *(1 mark)* How does the observed average proportion correct compare with $E(P)$ for each of the hypotheses tested?  That is, which is closer to random and which is farther away? 
+        iii. *(1 mark)* How does the observed average proportion correct compare with $E(P)$ for each of the hypotheses tested?  That is, which is closer to random and which is farther away?
+          
             * The observed average for red card is closer to 0.5, which means that is more closer to random.
+          
             * The observed average for greem card is farther away from the random(away from 0.5).
         
     d. Based on all analyses in all of the above questions:

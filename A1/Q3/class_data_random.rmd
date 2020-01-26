@@ -232,18 +232,20 @@ print(r_digit_median)
               median                      4.5                5                    7
               standard deviation          2.872281           3.052864             2.778401
               
-              
-              - student_digit sample has larger mean, median, and standard deviation than theoretical value
-              - random_digit sample has larger mean, and median than theoretical results. 
-              - But its standard deviation is smaller than theoretical value
+              * student_digit sample has larger mean, median, 
+                  and standard deviation than theoretical value
+              * random_digit sample has larger mean, 
+                  and median than theoretical results. 
+              * But its standard deviation is smaller than theoretical value
 
 
             
         v. *(1 mark)* Which of `random_digit` and `student_digit` have sample values closer to the theoretical values.
         
-            - student_digit have sample values closer to the theoretical values because the median and mean of student_digit
-              is closes to theroretical values. student_digit and random_digit have standards deviation are all close to the
-              theoretical sd.
+            - student_digit have sample values closer to the theoretical 
+                values because the median and mean of student_digit
+              is closes to theroretical values. student_digit and random_digit 
+                  have standards deviation are all close to the theoretical sd.
 
 
         -- Student_digit is more close to theoretical(uniform distribution)
