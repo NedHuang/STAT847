@@ -467,7 +467,7 @@ abline(v = median(numeric_r_both), col = "blue", lwd = 3, lty = 3)
             - $Pr(P = 0.5)$
               Selecting a correct card then a wrong card  OR selecting a wrong card then a correct card
               \[
-              Pr(P = 0.5) = \frac{2}{4}\cdot\frac{2}{3}+\frac{2}{4}\cdot\frac{2}{3} = \frac{1}{3}
+              Pr(P = 0.5) = \frac{2}{4}\cdot\frac{2}{3}+\frac{2}{4}\cdot\frac{2}{3} = \frac{2}{3}
               \]
             - $Pr(P = 1)$
               Selecting the only two wrong cards from four cards....

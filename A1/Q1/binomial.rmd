@@ -410,5 +410,5 @@ g. *(6 marks)* With supporting reference to any/all suitable discoveries you hav
     iii. Law of small numbers? What can you say about the effect of decreasing sample size $n$ on the quality and/or interpretation of your estimate $\widehat{p}$ of $p$?   
     
         * Small number of trials can give impercise result(far away from the expectation). 
-        * Becaus there are chances that not all possibility are covered with a shamm sample size, 
+        * Becaus there are chances that not all possibility are covered with a small sample size, 
         * likelihood of a Type II error skewing the results can be increased.

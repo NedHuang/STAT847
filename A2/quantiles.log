@@ -1,9 +1,9 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.5.8)  26 JAN 2020 15:24
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.5.8)  13 FEB 2020 22:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**class_data_logic.tex
-(./class_data_logic.tex
+**quantiles.tex
+(./quantiles.tex
 LaTeX2e <2018-12-01>
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
@@ -643,8 +643,13 @@ Package graphics Info: Driver file: xetex.def on input line 99.
 )
 \Gin@req@height=\dimen164
 \Gin@req@width=\dimen165
-) (./class_data_logic.aux)
-\openout1 = `class_data_logic.aux'.
+)
+
+LaTeX Warning: Unused global option(s):
+    [9pt].
+
+(./quantiles.aux)
+\openout1 = `quantiles.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 127.
 LaTeX Font Info:    ... okay on input line 127.
@@ -1024,270 +1029,112 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 7.0pt on input line 137.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 5.0pt on input line 137.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 10.00107pt on input line 137.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 7.00075pt on input line 137.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 5.00053pt on input line 137.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 9.99893pt on input line 137.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 6.99925pt on input line 137.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 4.99947pt on input line 137.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: TU).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 139.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 139.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00107pt on input line 139.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00075pt on input line 139.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00053pt on input line 139.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 139.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 139.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 139.
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 144.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 191.
 [1
 
 ]
-File: ./img/beer.png Graphic file (type bmp)
-<./img/beer.png>
-File: ./img/coke.png Graphic file (type bmp)
-<./img/coke.png>
-File: ./img/age17.png Graphic file (type bmp)
-<./img/age17.png>
-File: ./img/age19.png Graphic file (type bmp)
-<./img/age19.png>
-Missing character: There is no 。 in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no 、 in font [lmroman10-regular]:mapping=tex-text;!
+File: quantiles_files/figure-latex/hists-1.pdf Graphic file (type pdf)
+<use quantiles_files/figure-latex/hists-1.pdf>
 
-Package amsmath Warning: Foreign command \atopwithdelims;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 281.
+Overfull \hbox (186.24495pt too wide) in paragraph at lines 243--243
+ []   \TU/lmtt/m/n/10 hist(qt(r_unifgenFx(1000, qfunction = qunif), df=3), main
+ = []Student-t distribution[], xlab = []p[], col = []maroon[])[] 
+ []
 
 [2]
-Overfull \hbox (847.99498pt too wide) in paragraph at lines 359--359
-[]\TU/lmtt/m/n/10 e. For each green card answer, construct a logical vector con
-taining []TRUE[] when the answer is correct and []FALSE[] when it is not.  Assi
-gn these vectors to []correct_g1[] and []correct_g2[] respectively.  Use these 
-logical vectors to answer the following:[] 
+Overfull \hbox (123.49498pt too wide) in paragraph at lines 323--323
+[]      \TU/lmtt/m/n/10 No. The reason is the values if mtcars$cyl can be 4, 6,
+ and 8 only. We cannot divide them into 4 quantiles.[] 
  []
 
+
+Overfull \hbox (601.24498pt too wide) in paragraph at lines 323--323
+[]    \TU/lmtt/m/n/10 iv. *(4 marks)* Draw side by side (nicely labelled) histo
+grams of []mtcars$qsec[] and a sample of 1000 observations drawn from the estim
+ated distribution of []mtcars$qsec[].  Comment on how these compare.[] 
+ []
+
+
+Overfull \hbox (2.74498pt too wide) in paragraph at lines 323--323
+[]        \TU/lmtt/m/n/10 hist(estimated_qsec, main = []Estimated seconds[], xl
+ab = []Seconds[], col = []maroon[])[] 
+ []
+
+
+Overfull \hbox (396.49498pt too wide) in paragraph at lines 323--323
+[]    \TU/lmtt/m/n/10 v. *(3 marks)* Draw a (nicely labelled) []qqplot()[] comp
+aring the above two sets of observations.  What do you conclude about their emp
+irical distributions?  Why?[] 
+ []
+
+
+Overfull \hbox (354.49498pt too wide) in paragraph at lines 323--323
+[]        \TU/lmtt/m/n/10 qqplot(mtcars$qsec, estimated_qsec, main = []qqplot, 
+quarter-mile seconds and estimated distribution[], xlab = []real qsec (s)[], yl
+ab = []estimation(s)[])[] 
+ []
+
+
+Overfull \hbox (107.74498pt too wide) in paragraph at lines 323--323
+[]      \TU/lmtt/m/n/10 The estimation is percise because the y-intercept of th
+e plot is close to 0 and the slope is close to 1.[] 
+ []
+
+
+Overfull \hbox (637.99498pt too wide) in paragraph at lines 323--323
+[]    \TU/lmtt/m/n/10 vi. *(4 marks)* Suppose interest lay in producing a boots
+trap distribution for some estimator $\bigwig{\theta}$.  Instead of bootstrappi
+ng, how might []quantile()[] be used?  Which would you recommend and why?[] 
+ []
+
+
+Overfull \hbox (307.24498pt too wide) in paragraph at lines 323--323
+[]      \TU/lmtt/m/n/10 We can further use the quantile function for each 25% o
+f the data. By making 4x4=16 quantiles, the result could be more close to th re
+al data.[] 
+ []
+
+
+Overfull \hbox (2.74498pt too wide) in paragraph at lines 323--323
+[]      \TU/lmtt/m/n/10 Bootstraping is more complex and the result may depend 
+on the representative sample.[] 
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 325.
 [3]
-Overfull \hbox (548.74498pt too wide) in paragraph at lines 416--416
-[]    \TU/lmtt/m/n/10 ii. *(2 marks)* Determine the proportion of people who ha
-d a correct first selection.  How does this compare to the probability of getti
-ng it correct if the first selection was a random one?[] 
- []
-
-
-Overfull \hbox (175.99498pt too wide) in paragraph at lines 448--448
-[]        \TU/lmtt/m/n/10 The proportion of people actually choose the correct 
-first selection is higher that that of first random selection.[] 
- []
-
-
-Overfull \hbox (553.99498pt too wide) in paragraph at lines 448--448
-[]    \TU/lmtt/m/n/10 iii. *(2 marks)* Determine the proportion of people who g
-ot *both* selections correct.  How does this compare to the probability of gett
-ing both correct if the selections were made at random?[] 
- []
-
-
-Overfull \hbox (280.99498pt too wide) in paragraph at lines 470--470
-[]    \TU/lmtt/m/n/10 iv. *(2 marks)* Now consider only those who got the first
- card right.  Determine what proportion of these *also* got the second card rig
-ht.[] 
- []
-
-
-Overfull \hbox (244.24498pt too wide) in paragraph at lines 470--470
-[]        \TU/lmtt/m/n/10 How does this compare to the probability of selecting
- the second correctly at random,  *given* the first was selected correctly?[] 
- []
-
-
-Overfull \hbox (2.74498pt too wide) in paragraph at lines 504--504
-[]        \TU/lmtt/m/n/10 - Theis proportion is higher than taht of making sele
-ction randomly, which is 1/3.[] 
- []
-
-
-Overfull \hbox (490.99498pt too wide) in paragraph at lines 504--504
-[]        \TU/lmtt/m/n/10 - To make a correct selection when first is right, pl
-ayer has to choose the other correct card from remaining 3 cards. Therefore the
- proportion is 1/3 if select card randomly.[] 
- []
-
-
-Overfull \hbox (622.24498pt too wide) in paragraph at lines 504--504
-[]    \TU/lmtt/m/n/10 v. *(2 marks)* Construct a new numeric vector []prop_corr
-ect_green[], from the logical vectors you have created,  which records the prop
-ortion (i.e. 0, 0.5, or 1) of correct cards identified by each person.[] 
- []
-
-
-Overfull \hbox (191.74498pt too wide) in paragraph at lines 504--504
-[]        \TU/lmtt/m/n/10 Add a red dashed vertical line using []abline()[] to 
-the plot at the average proportion correct. Use []lwd = 3, lty = 2[].[] 
- []
-
-[4]
-Overfull \hbox (107.74498pt too wide) in paragraph at lines 504--504
-[]        \TU/lmtt/m/n/10 Add a blue dotted vertical line to the plot at the me
-dian proportion correct.  Use []lwd = 3, lty = 3[].[] 
- []
-
-File: class_data_logic_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (t
-ype pdf)
-<use class_data_logic_files/figure-latex/unnamed-chunk-7-1.pdf>
-
-Overfull \hbox (81.49498pt too wide) in paragraph at lines 538--538
-[]     \TU/lmtt/m/n/10 vi. *(2 marks)* Comment on how well the people did overa
-ll.  What is the basis for your conclusions?[] 
- []
-
-[5]
-File: ./img/cardA.png Graphic file (type bmp)
-<./img/cardA.png>
-File: ./img/cardB.png Graphic file (type bmp)
-<./img/cardB.png>
-File: ./img/card2.png Graphic file (type bmp)
-<./img/card2.png>
-File: ./img/card3.png Graphic file (type bmp)
-<./img/card3.png>
-
-Underfull \hbox (badness 10000) in paragraph at lines 631--632
-
- []
-
-[6]
-Overfull \hbox (39.49498pt too wide) in paragraph at lines 705--705
-[]    \TU/lmtt/m/n/10 - The first most often selected is (a), the card A, which
- is correct. It was chosen 37 times.[] 
- []
-
-
-Overfull \hbox (55.24498pt too wide) in paragraph at lines 705--705
-[]    \TU/lmtt/m/n/10 - The second most often selected is (c), the card 2, whic
-h is incorrect. It was chosen 25 times.[] 
- []
-
-
-Overfull \hbox (837.49498pt too wide) in paragraph at lines 705--705
-[]\TU/lmtt/m/n/10 e. For each red card answer, construct a logical vector conta
-ining []TRUE[] when the answer is correct and []FALSE[] when it is not.  Assign
- these vectors to []correct_r1[] and []correct_r2[] respectively.  Use these lo
-gical vectors to answer the following:[] 
- []
-
-
-Overfull \hbox (548.74498pt too wide) in paragraph at lines 739--739
-[]    \TU/lmtt/m/n/10 ii. *(2 marks)* Determine the proportion of people who ha
-d a correct first selection.  How does this compare to the probability of getti
-ng it correct if the first selection was a random one?[] 
- []
-
-
-Overfull \hbox (543.49498pt too wide) in paragraph at lines 771--771
-[]        \TU/lmtt/m/n/10 * The proportion of people who had a correct first se
-lection is 0.8809524. It is higher than 0.25 which is the probability of gettin
-g it correct if the first selection was a random one.[] 
- []
-
-[7]
-Overfull \hbox (553.99498pt too wide) in paragraph at lines 771--771
-[]    \TU/lmtt/m/n/10 iii. *(2 marks)* Determine the proportion of people who g
-ot *both* selections correct.  How does this compare to the probability of gett
-ing both correct if the selections were made at random?[] 
- []
-
-
-Overfull \hbox (70.99498pt too wide) in paragraph at lines 796--796
-[]    \TU/lmtt/m/n/10 - It is higher than 1/6 which is the proportion of people
- who got both selections correct randomly.[] 
- []
-
-
-Overfull \hbox (280.99498pt too wide) in paragraph at lines 796--796
-[]    \TU/lmtt/m/n/10 iv. *(2 marks)* Now consider only those who got the first
- card right.  Determine what proportion of these *also* got the second card rig
-ht.[] 
- []
-
-
-Overfull \hbox (244.24498pt too wide) in paragraph at lines 796--796
-[]        \TU/lmtt/m/n/10 How does this compare to the probability of selecting
- the second correctly at random,  *given* the first was selected correctly?[] 
- []
-
-
-Overfull \hbox (123.49498pt too wide) in paragraph at lines 829--829
-[]        \TU/lmtt/m/n/10 - The proportion of these *also* got the second card 
-right when they got first card correct is 0.2972973.[] 
- []
-
-
-Overfull \hbox (34.24498pt too wide) in paragraph at lines 829--829
-[]        \TU/lmtt/m/n/10 - It is less than 1/3, which is probability of select
-ing the second correctly at random.[] 
- []
-
-
-Overfull \hbox (611.74498pt too wide) in paragraph at lines 829--829
-[]    \TU/lmtt/m/n/10 v. *(2 marks)* Construct a new numeric vector []prop_corr
-ect_red[], from the logical vectors you have created,  which records the propor
-tion (i.e. 0, 0.5, or 1) of correct cards identified by each person.[] 
- []
-
-
-Overfull \hbox (191.74498pt too wide) in paragraph at lines 829--829
-[]        \TU/lmtt/m/n/10 Add a red dashed vertical line using []abline()[] to 
-the plot at the average proportion correct. Use []lwd = 3, lty = 2[].[] 
- []
-
-
-Overfull \hbox (107.74498pt too wide) in paragraph at lines 829--829
-[]        \TU/lmtt/m/n/10 Add a blue dotted vertical line to the plot at the me
-dian proportion correct.  Use []lwd = 3, lty = 3[].[] 
- []
-
-[8]
-File: class_data_logic_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (
-type pdf)
-<use class_data_logic_files/figure-latex/unnamed-chunk-13-1.pdf>
-
-Overfull \hbox (81.49498pt too wide) in paragraph at lines 863--863
-[]     \TU/lmtt/m/n/10 vi. *(2 marks)* Comment on how well the people did overa
-ll.  What is the basis for your conclusions?[] 
- []
-
-[9]
-Overfull \hbox (86.49495pt too wide) in paragraph at lines 949--949
- [] \TU/lmtt/m/n/10 * The observed average for red card is closer to 0.5, which
- means that is more closer to random.[] 
- []
-
-
-Overfull \hbox (28.74495pt too wide) in paragraph at lines 949--949
- [] \TU/lmtt/m/n/10 * The observed average for greem card is farther away from 
-the random(away from 0.5).[] 
- []
-
-[10]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 983.
-[11]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 983.
-(./class_data_logic.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 983.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 983.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 325.
+(./quantiles.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 325.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 325.
  ) 
 Here is how much of TeX's memory you used:
- 27775 strings out of 492916
- 507161 string characters out of 6133346
- 730239 words of memory out of 5000000
- 31572 multiletter control sequences out of 15000+600000
+ 27734 strings out of 492916
+ 506260 string characters out of 6133346
+ 729893 words of memory out of 5000000
+ 31545 multiletter control sequences out of 15000+600000
  538692 words of font info for 72 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 59i,7n,115p,815b,590s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 59i,5n,115p,808b,566s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on class_data_logic.pdf (11 pages).
+Output written on quantiles.pdf (3 pages).
