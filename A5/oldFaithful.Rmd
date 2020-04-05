@@ -1,0 +1,268 @@
+=---
+title: "Old  Faithful"
+output:
+  pdf_document:
+    keep_tex: yes
+    latex_engine: xelatex
+    number_sections: yes
+  html_document:
+    toc: yes
+  word_document: default
+fontsize: 9pt
+urlcolor: blue
+header-includes:
+- \usepackage{graphicx}
+- \usepackage{epic}
+- \usepackage{color}
+- \usepackage{hyperref}
+- \usepackage{multimedia}
+- \newcommand{\ve}[1]{\mathbf{#1}}
+- \newcommand{\pop}[1]{\mathcal{#1}}
+- \newcommand{\samp}[1]{\mathcal{#1}}
+- \newcommand{\subspace}[1]{\mathcal{#1}}
+- \newcommand{\sv}[1]{\boldsymbol{#1}}
+- \newcommand{\sm}[1]{\boldsymbol{#1}}
+- \newcommand{\tr}[1]{{#1}^{\mkern-1.5mu\mathsf{T}}}
+- \newcommand{\abs}[1]{\left\lvert ~{#1} ~\right\rvert}
+- \newcommand{\size}[1]{\left\lvert {#1} \right\rvert}
+- \newcommand{\norm}[1]{\left|\left|{#1}\right|\right|}
+- \newcommand{\field}[1]{\mathbb{#1}}
+- \newcommand{\Reals}{\field{R}}
+- \newcommand{\Integers}{\field{Z}}
+- \newcommand{\Naturals}{\field{N}}
+- \newcommand{\Complex}{\field{C}}
+- \newcommand{\Rationals}{\field{Q}}
+- \newcommand{\widebar}[1]{\overline{#1}}
+- \newcommand{\wig}[1]{\tilde{#1}}
+- \newcommand{\bigwig}[1]{\widetilde{#1}}
+- \newcommand{\leftgiven}{~\left\lvert~}
+- \newcommand{\given}{~\vert~}
+- \newcommand{\indep}{\bot\hspace{-.6em}\bot}
+- \newcommand{\notindep}{\bot\hspace{-.6em}\bot\hspace{-0.75em}/\hspace{.4em}}
+- \newcommand{\depend}{\Join}
+- \newcommand{\notdepend}{\Join\hspace{-0.9 em}/\hspace{.4em}}
+- \newcommand{\imply}{\Longrightarrow}
+- \newcommand{\notimply}{\Longrightarrow \hspace{-1.5em}/ \hspace{0.8em}}
+- \newcommand*{\intersect}{\cap}
+- \newcommand*{\union}{\cup}
+- \DeclareMathOperator*{\argmin}{arg\,min}
+- \DeclareMathOperator*{\argmax}{arg\,max}
+- \DeclareMathOperator*{\Ave}{Ave\,}
+- \newcommand{\suchthat}{~:~}
+- \newcommand{\st}{~:~} 
+- \newcommand{\code}[1]{\texttt{#1}}
+- \newcommand*{\Rnsp}{\textsf{R}}
+- \newcommand*{\R}{\textsf{R}$~$}
+- \newcommand*{\loonnsp}{\textsf{loon}}
+- \newcommand*{\loon}{\textsf{loon}$~$}
+- \newcommand*{\Pythonnsp}{\textsf{Python}}
+- \newcommand*{\Python}{\textsf{Python}$~$}
+- \newcommand*{\Tclnsp}{\textsf{Tcl}}
+- \newcommand*{\Tcl}{\textsf{Tcl}$~$}
+- \newcommand{\pkg}[1]{\textsf{#1}}
+- \newcommand{\pkgsp}[1]{\textsf{#1}$~$}
+- \newcommand{\lpart}[1]{\textsf{#1}}
+- \newcommand{\lpartsp}[1]{\textsf{#1}$~$}
+- \newcommand{\togglepause}{\pause}
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE,
+                      message = FALSE,
+                      fig.align = "center", 
+                      fig.width = 7, 
+                      fig.height = 6,
+                      out.height = "40%")
+set.seed(12314159)
+library(loon.data)
+library(loon)
+library(gridExtra)
+
+imageDirectory <- "./img"
+dataDirectory <- "./data"
+path_concat <- function(path1, path2, sep="/") paste(path1, path2, sep = sep)
+```
+
+
+```{r oldFaithfulPic, echo=FALSE, out.height = "30%"}
+knitr::include_graphics(path_concat(imageDirectory, 
+                                    "OldFaithful.png"))
+```
+ 
+---
+
+**66 marks**
+
+In the Yellowstone National Park, Wyoming, USA there is a famous geyser called "Old Faithful" which erupts with some regularity. The physical model is thought to be something like the  illustration (from Rinehart (1969), p. 572, via \href{http://www.jstor.org.proxy.lib.uwaterloo.ca/stable/2347385?sid=primo&origin=crossref&seq=1#page_scan_tab_contents}{\color {blue} Azzalini and Bowman (1990)}):
+
+\href{http://www.jstor.org.proxy.lib.uwaterloo.ca/stable/2347385?sid=primo&origin=crossref&seq=1#page_scan_tab_contents}{\color {blue} Azzalini and Bowman (1990)} describe what's happening in the stages as follows:
+\footnotesize
+\begin{enumerate}
+\item[Stage 1.] ``The tube is full of water which is heated by the surrounding rocks. The water is heated above the normal boiling temperature because of increased pressure.  This
+due to the mass of water which is on top: the deeper the water the higher the temperature required for boiling. Moreover, 'whereas the water in the tube is superheated with respect to the ambient boiling point at the mouth of the geyser, the water temperature at depth is far below the boiling point curve that must be applied to a vertical column of water'. "
+
+
+\item[Stage 2.] ``When the top water reaches the boiling temperature, it becomes steam and moves towards the surface. The pressure at the bottom then drops rapidly to the normal level and, by an induction effect, the bottom water rapidly becomes steam. This cascading mechanism is repeated several times: as water is converted into steam, the pressure on lower water is decreased, causing the production of more steam and triggering the eruption."
+
+\item[Stage 3a.] ``If at the time of cascading the temperature in the lower regions is lower than might be expected, cascading stops short of the bottom and the play is short.' Stage 3b. Alternatively, 'when the temperature is comparatively high at these depths, cascading works itself down much farther and the play is long'."
+
+\item[Stage 4.]  ``The geyser tube is completely or partly empty, ready to be filled with new water."
+\end{enumerate}
+\footnotesize
+``We do not discuss geological reasons for the fact that sometimes the cascading effect works down to the bottom of the tube while at other times it stops earlier. We simply note the phenomenon and discuss its consequences. Stages 3a and 3b are associated with short and long waiting times for the next eruption. In stage 3a, the system starts a new cycle partially filled with hot water so that the following heating time is shorter; at the new eruption the entire tube will be emptied, since part of the water had already been heated in the previous cycle."
+
+For each eruption, the waiting time $w$ between its beginning and the beginning of the previous eruption is recorded to the nearest minute and the duration $d$ of the eruption is recorded to fractions of a minute. 
+
+Collected from August 1st until August 15th, 1985 the data record the 299 successive eruptions which occurred during this time.  Though R. A. Hutchinson, the park geologist, collected similar data sets, it is not clear from the source whether or not this data set is one of them.  Measurements had to be taken through the night and duration times for these eruptions were recorded only as being one of short, medium, or long (encoded here as 2, 3, or 4 minutes, respectively). 
+
+\newpage
+
+\normalsize
+The data on `duration` and `waiting` times are contained in the `geyser` data set found in the `MASS` package.  Load this as
+```{r pathSetup, eval = TRUE}
+library(MASS)
+data(geyser)
+print(geyser)
+```
+
+a. *(3 marks)* Describe the target population/process $\pop{P}_{Target}$ you think scientific investigators have in mind for the above problem.  Carefully define both what constitutes an individual unit of $\pop{P}_{Target}$ and how the set of units is defined.
+
+The target population is All the eruptions of geysers in Yellowstone National Park.
+The individual unit is individual eruption of geysers in the Yellowstone National Park.
+
+
+b. *(4 marks)* Describe a study population/process $\pop{P}_{Study}$ as it might have been available for the scientific investigators.  Again, carefully define both what constitutes an individual unit of $\pop{P}_{Study}$ and how the set of units is defined.   Why might there be study error?
+
+The study population is all accessible eruptions of geysers called “Old Faithful” in Yellowstone National Park. 
+
+The individual unit is individual eruption of geysers called “Old Faithful” in the Yellowstone National Park that are accessible to researchers.
+
+The study errors may come from :
+  1. Different geysers could have different structures and different behaviors in eruptions. The eruptions of old faithful geyser may not represent all eruptions of other geysers.
+  2. The atmospheric pressure may change during a day(from morning to evening) and during different days. The atmospheric pressure may have influence in eruptions.
+
+
+c. *(4 marks)* Describe the sample $\samp{S}$.  Again, carefully define both what constitutes an individual unit of $\samp{S}$ and how the set of units is defined.  Why might there be sample error?
+
+The sample is the 299 eruptions whose waiting time and duration was recorded by researcher during Aug 1st to Aug 15th, 1980.
+A unit of the sample is one of these eruptions whose waiting time and duration was recorded.
+The sample error can be:
+ 
+  3. Measurements had to be taken through the night. Therefor
+
+
+d. *(2 marks)* Imagine the process for selecting a sample.  How might this process produce sampling bias?
+  299 successive eruptions was recorded at night during Aug 1st to Aug 15th, 1980 rather than take samples from the whole year. There can be sampling bias because of weather, temperature, humidity, etc.
+
+ 1. Samples cannot cover the whole population.
+ For example, the units(sample) with long waiting times may have lower sampling probability. Or the units(sample) with short waiting times may have lower sampling probability. In either case, one type of unit will be underrepresented.
+ 
+  2. the units(sample) with long/medium/short duration may have lower sampling probability than it should have. In this case, these cases will be underrepresented in our sample.
+  
+  
+e. *(4 marks)*  
+Given the above description of a physical model for how the geyser might work, explain why the independence of the variates in each of the following pairs might be of interest: 
+    i. $w_i$ and $d_i$
+    ii. $d_i$ and $w_{i+1}$
+    iii. $d_{i-1}$ and $d_i$
+    iv. $w_{i-1}$ and $w_i$
+    
+    i.  The duration may be related to the waiting time because the more water in the tube, the longer time is required to heat the water. The more water becomes steam, the longer duration is.
+    ii. The longer duration means more water evaporates to steam during the eruption, which leaves larger vacancy in the geyser. Therefore, more water is needed to fill the geyser(fully) and it takes more time(waiting time) to heat these water for next eruption.
+    iii.The duration of eruption may have influence on the duration of next eruption. The longer duration indicates more water evaporates to steam and leaves a large vacanc in the geyser. The more cold water filled the geyser and the more water at the bottom will be under larger pressure. It will evaporate in higher temperatures and may have have more duration time in next eruption.
+    iv. The waiting time is the heating time. The longer the waiting time may cause a longer duration. It may cause the longer waiting time for next eruption because more water refilled the geyser and it may need more time to heat these cold water.
+    
+    
+f. *(2 marks)*  Describe one other variate of potential interest which is implicitly defined in this data set?  How would you determine its value?
+  $d_i$ and $d_{i+2}$
+  If the long duration of current eruption can leads to a short duration for next eruption, and then leads to the long duration for the third eruption, then there should be a pattern for the duration of these eruptions.
+
+
+g. *(3 marks)* Imagine the measuring process.  What problem(s) do you think might be associated with the measuring process?  How might it manifest itself in terms of measuring bias and/or variability?
+The measuring process did not record the humidity and the weather and atmospheric pressure. Obviously the rain will make it faster to fill the vacancy in geyser after eruption. 
+
+The data in rainy day should be collected and we may find difference between the data of eruptions in different weather. 
+
+
+h. *(10 marks)*  To assess the measuring systems, we might consider looking at the least significant parts of each measurement. For this the modulus arithmetic binary operator `%%` in `R` can be handy to find the least significant part of a measurement.  For example `x %% 10` will return the rightmost digits in a non-negative integer `x` and `x %% 1` will return the fractional part of a non-negative real number `x`.
+```{r}
+H_d = (geyser%%1)["duration"]
+H_w = (geyser%%10)["waiting"]
+print(chisq.test(H_d))
+print(chisq.test(H_w))
+
+```
+
+    Using the `%%` modulus operator to construct the appropriate data set, perform a Pearson chi-square goodness of fit (in each case use 10 non-overlapping equal size bins) to test each of the following hypotheses:
+    
+    i. $H_d$ the fractional part of the duration follows a $U[0,1]$ distribution,
+    
+    ii. $H_w$ the rightmost digit of the waiting time equiprobably any one of the digits $0, 1, 2, \ldots, 9$.
+    
+    Summarize your findings (including showing your code).  What do you conclude about the two measuring systems?
+    
+i.  *(12 marks)* Plot the sample quantiles of both the duration and the waiting times on the same plot (use a different colour for each variate).  Show your plot and the code used to generate it. By referring to the relevant features of the sample quantiles, separately describe the distribution of each variate and compare the two distributions to one another.  Now compare the two distributions by constructing an appropriate quantile-quantile plot and referring to its relevant features.  Again show the plot and the code.
+```{r}
+q_D = quantile(geyser$duration)
+q_W = quantile(geyser$waiting)
+print(q_D)
+
+plot(q_W,, ylab = "Value of Waiting Time",
+     main = "Quantile of Waiting Time and Quantile of Duration", xlab = "Time",
+     col = "blue",lty=1)
+par(new = TRUE)
+plot(q_D,, xaxt = "n", yaxt = "n",
+     ylab = "", xlab = "", col = "red", lty = 2)
+axis(side = 4)
+mtext("Value of Duration", side = 4, line = 3)
+legend("topleft", c("Waiting Time", "Duration"),
+       col = c("blue", "red"), lty=c(1,2))
+#library(latticeExtra)
+#obj1 <- xyplot(q_D ~ seq(0,1,0.25), lwd=1, col="steelblue")
+#obj2 <- xyplot(q_W ~ seq(0,1,0.25), lwd=0, col="#69b3a2")
+# second y axis:
+#doubleYScale(obj1, obj2, add.ylab2 = TRUE, use.style=FALSE )
+```
+```{r}
+plot(q_W,q_D,pch=6, col =adjustcolor("red", alpha.f = 0.7),xlab='Value of Waiting', ylab='Value of Duration',main="Quantile of Duration vs Quantile of Waiting Time")
+
+```
+
+
+
+
+j. *(10 marks)* Consider the waiting times $w_i$.  We might ask whether waiting times could have been independently distributed.  One way to test this is to compare each waiting time $w_i$ with that one that occurred exactly $k$ eruptions previously, namely $w_{i-k}$, the so called ``lagged $k$" value.   For $k \ge 1$, there will be $n-k$ pairs $(w_{i-k}, w_i)$ which could be assessed for independence.  A scatterplot of these pairs could be used to assess independendence.
+
+    Alternatively, we might first transform them to values which should be more nearly uniformly distributed.  To that end, define 
+    
+    \footnotesize
+    ```{r transform2uniform}
+    transform2uniform <- function(x, 
+                                  a = if(length(x) <= 10) 3/8 else 1/2,
+                                  ...) {
+      (rank(x, ...) - a) / length(x)
+    }
+    ```
+    
+    \normalsize
+    Now use the function `transform2uniform()` on the waiting times to give values  $u_i = \widehat{Q}_W(w_i)$.  You will now consider the independence of $u_i$ and its lag $k$ value $u_{i-k}$. If they are independent, the scatterplot of the $n-k$ pairs $(u_{i-k}, u_i)$ should look like **uniform scatter** in the unit square.
+    
+    Conduct a scatterplot line up test for independence of $u_{i-k}$ and $u_i$ for each of
+    
+    i. $k = 1$, the immediately preceding eruption,  and 
+    ii. $k = 22$, the eruption occurring roughly the day before. 
+    
+    Show your code for constructing the necessary data and the lineup plots.  What do you conclude about the dependence between waiting times?
+
+k. *(12 marks)* Consider the possible dependence of the $i$th duration $d_i$ on that duration, $d_{i-k}$, lagged $k$ behind.  Using a two-dimensional kernel density estimate as a means to display the data (without the data points), conduct a lineup test of independence using joint density contours for each of
+
+    i. $k = 1$, the immediately preceding eruption,  and 
+    ii. $k = 22$, the eruption occurring roughly the day before. 
+
+    Show your code for constructing the necessary data and the lineup plots.  What do you conclude about the dependence between durations lengths?
+
+
+
+
+
